@@ -9,7 +9,14 @@ namespace PastaPizzaNet
     public abstract class Gerecht : IBedrag
     {
         private string naam;
-        public string Naam { get => naam; set => naam = value; }
+        public string Naam 
+        { 
+            get => naam;
+            set
+            {
+                naam = value ?? "Onbekend gerecht";
+            }
+        }
 
         private decimal prijs;
         public decimal Prijs
@@ -28,5 +35,15 @@ namespace PastaPizzaNet
             Naam = naam;
             Prijs = prijs;
         }
+        public virtual decimal BerekenBedrag()
+        {
+            return Prijs;
+        }
+        
+        public override string ToString()
+        {
+            return $"Gerecht: {Naam} ({BerekenBedrag()} euro) ";
+        }
+
     }
 }

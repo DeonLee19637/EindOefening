@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PastaPizzaNet
 {
-    public enum DrankSoorten
+    public enum DrankNaam
     {
         Water,
         Limonade,
@@ -16,8 +16,8 @@ namespace PastaPizzaNet
     }
     public abstract class Drank : IBedrag
     {
-        private string naam;
-        public string Naam { get => naam; set => naam = value; }
+
+        public DrankNaam? DrankNaam;
 
         private decimal prijs;
         public decimal Prijs
@@ -30,6 +30,20 @@ namespace PastaPizzaNet
                 prijs = value;
             }
         }
-        public Drank(string naam, decimal prijs) { }
+        public Drank(DrankNaam drankNaam)
+        {
+            DrankNaam = drankNaam;
+        }
+        public virtual decimal BerekenBedrag()
+        {
+            return Prijs;
+        }
+
+        public override string ToString()
+        {
+            //return $"Drank: " + $"{(DrankNaam != null ? $"{DrankNaam} " : "")}" + $"({BerekenBedrag()} euro)";
+            return $"Drank: " + $"{DrankNaam}" + $"({BerekenBedrag()} euro)";
+        }
+
     }
 }

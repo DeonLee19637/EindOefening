@@ -10,9 +10,14 @@ namespace PastaPizzaNet
     {
         public string Omschrijving { get; set; } = null!;
 
-        public Pasta(string naam, decimal prijs):base(naam, prijs)
+        public Pasta(string naam, decimal prijs, string omschrijving):base(naam, prijs)
         {
-            
+            Omschrijving = omschrijving;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + $"{Omschrijving}";
         }
 
     }
