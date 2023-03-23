@@ -25,7 +25,7 @@ namespace PastaPizzaNet
             set
             {
                 if (prijs < 0)
-                    throw new Exception("Prijs kan niet lager zijn dan nul");
+                    throw new Exception($"Prijs van {Naam} kan niet lager zijn dan nul");
                 prijs = value;
             }
         }

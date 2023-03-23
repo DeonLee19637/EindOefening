@@ -9,27 +9,33 @@ namespace PastaPizzaNet
     public class Warmedrank : Drank
     {
 
-        private DrankNaam drankSoort;
+        private DrankNaam drankNaam;
         public DrankNaam DrankNaam 
         { 
-            get => drankSoort; 
-            set
-            {
-                //Als de ingegeven DrankNaam geen warme drank is, geef het een Exception. 
-                switch(value)
-                {
-                    case DrankNaam.Koffie:
-                    case DrankNaam.Thee:
-                        drankSoort = value; break;
-                    default:
-                        throw new Exception("Dit is geen warme drank");
-                }
-            }
+            get => drankNaam;
+            set => drankNaam = value;
         }
-        public Warmedrank(DrankNaam drankNaam):base(drankNaam)
+        public Warmedrank(DrankNaam drankNaam, decimal prijs):base(drankNaam, prijs)
         {
             DrankNaam = drankNaam;
-            Prijs = 2.5m;
+            Prijs = prijs;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is Warmedrank drank)
+            {
+                return drank.DrankNaam == DrankNaam && drank.Prijs == Prijs;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return DrankNaam.GetHashCode();
         }
 
         //De method BerekenBedrag moeten we hier niet overnemen aangezien we bij de aanmaak van dit object de Prijs een constante is. 

@@ -18,10 +18,11 @@ namespace PastaPizzaNet
         {
             StringBuilder pizza = new StringBuilder();
             pizza.Append(base.ToString());
-            foreach (string onderdeel in Onderdelen)
-            {
-                pizza.Append(onderdeel.Equals(Onderdelen.LastOrDefault()) ? $"{onderdeel} " : $"{onderdeel} - ");
-            }
+            pizza.Append(string.Join(" - ", Onderdelen));
+            //foreach (string onderdeel in Onderdelen)
+            //{
+            //    pizza.Append(onderdeel.Equals(Onderdelen.LastOrDefault()) ? $"{onderdeel} " : $"{onderdeel} - ");
+            //}
             return pizza.ToString();
         }
     }

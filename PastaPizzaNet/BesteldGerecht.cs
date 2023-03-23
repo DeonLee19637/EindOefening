@@ -49,13 +49,13 @@ namespace PastaPizzaNet
             if (Extras.Length > 0)
             {
                 totaalGerecht.Append(" extra: ");
-
-                foreach(Extras extra in Extras)
-                {
-                    totaalGerecht.Append($"{extra.ToString()} ");
-                }
+                totaalGerecht.Append(string.Join(" ", Extras));
+                //foreach(Extras extra in Extras)
+                //{
+                //    totaalGerecht.Append($"{extra.ToString()} ");
+                //}
             }
-            totaalGerecht.Append($"(bedrag: {BerekenBedrag()} euro)");
+            totaalGerecht.Append($" (bedrag: {BerekenBedrag()} euro)");
             return totaalGerecht.ToString();
         }
     }

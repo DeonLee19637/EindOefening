@@ -12,7 +12,24 @@ namespace PastaPizzaNet
 
         public List<IBedrag> Bedragen = new List<IBedrag>();
         public BesteldGerecht Gerecht { get; set; } = null!;
-        public Drank Drank { get; set; } = null!;
+
+        private Drank drank;
+        public Drank Drank 
+        {
+            get => drank;
+            set
+            {
+                if (value != null)
+                {
+                    if (!Drank.GeldigeDranken.Contains(value))
+                    {
+                        throw new Exception($"Invoer van onbestaande drank met type {value.GetType()}");
+                    }
+                    drank = value;
+                }
+
+            } 
+        }
         public Dessert Dessert { get; set; } = null!;
 
         private int aantal;
@@ -35,6 +52,8 @@ namespace PastaPizzaNet
             Drank = drank;
             Dessert = dessert;
             Aantal = aantal;
+
+            //Lijst van alle objecten die interface IBedrag implementeren
             Bedragen.Add(Gerecht);
             Bedragen.Add(Drank);
             Bedragen.Add(Dessert);

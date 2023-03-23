@@ -29,7 +29,7 @@ namespace PastaPizzaNet
                         dessertNaam = value;
                         break;
                     default:
-                        throw new Exception("Ongeldig dessert");
+                        throw new Exception($"De naam {value} is geen geldige naam voor een Dessert");
                 }
             } 
         }
@@ -41,29 +41,19 @@ namespace PastaPizzaNet
             set
             {
                 if (prijs < 0)
-                    throw new Exception("Prijs kan niet lager zijn dan nul");
+                    throw new Exception($"Prijs van {DessertNaam} kan niet lager zijn dan nul");
                 prijs = value;
             }
         }
 
-        public Dessert(DessertNaam dessertNaam) 
+        public Dessert(DessertNaam dessertNaam, decimal prijs) 
         {
             DessertNaam = dessertNaam;
+            Prijs = prijs;
         }
 
         public decimal BerekenBedrag()
         {
-            //Naam van het dessert bepaalt de prijs/bedrag
-            switch (dessertNaam)
-            {
-                case DessertNaam.Tiramisu:
-                case DessertNaam.Ijs:
-                    Prijs = 3.0m; break;
-                case DessertNaam.Cake:
-                    Prijs = 2.0m; break;
-                default:
-                    throw new Exception("Ongeldig dessert");
-            }
             return Prijs;
         }
 
